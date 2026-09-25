@@ -11,9 +11,16 @@
 - Visually cluttered
 - A generic AI startup template
 
-## Logo
+## Logo & Brand Marks
 
-The final approved Streamly logo is the purple logo provided by the user. Do not generate or substitute a different logo. Use it as the canonical brand asset across all surfaces.
+The official canonical Streamly logo is the 3D purple ribbon play-button enclosing a gaming controller with the "Streamly" wordmark:
+- **Dark Mode Master:** `assets/images/brand/streamly-logo-dark.jpg` (`public/brand/streamly-logo-dark.jpg`) — for dark navigation, dark cards, and hero elements.
+- **Light Mode Master:** `assets/images/brand/streamly-logo-light.jpg` (`public/brand/streamly-logo-light.jpg`) — for white/light document backgrounds.
+- **Header & Footer Banners:** `streamly-logo-banner.jpg` (dark) and `streamly-logo-banner-light.jpg` (light) — tightly cropped horizontal-ready lockup.
+- **Icon Mark:** `streamly-icon.png` (536×536) — square app icon for topbar brand lockups, mobile drawer, creator login cards, and badges.
+- **Browser Favicons:** `favicon-32x32.png` and `favicon.ico` — loaded in `index.html`, `login.html`, and Next.js root layout.
+
+Do not generate or substitute a different logo. Use these canonical brand assets across all surfaces.
 
 ## Color Palette
 

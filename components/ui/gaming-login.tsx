@@ -143,10 +143,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
     return (
         <div className="p-8 rounded-2xl backdrop-blur-sm bg-black/50 border border-white/10">
             <div className="mb-8 text-center">
+                <div className="mx-auto mb-4 w-16 h-16 rounded-2xl bg-purple-600/20 border border-purple-400/30 flex items-center justify-center shadow-lg shadow-purple-500/20 hover:scale-105 transition-transform duration-300">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/brand/streamly-icon.png" alt="Streamly" className="w-12 h-12 object-contain rounded-lg drop-shadow" />
+                </div>
                 <h2 className="text-3xl font-bold mb-2 relative group">
                     <span className="absolute -inset-1 bg-gradient-to-r from-purple-600/30 via-pink-500/30 to-blue-500/30 blur-xl opacity-75 group-hover:opacity-100 transition-all duration-500 animate-pulse"></span>
                     <span className="relative inline-block text-3xl font-bold mb-2 text-white">
-                        NexusGate
+                        Streamly
                     </span>
                     <span className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
                 </h2>

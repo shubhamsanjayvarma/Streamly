@@ -12,7 +12,7 @@ export interface AssetDimensions {
 export interface BaseAsset {
     id: string;
     name: string;
-    category: 'payment_providers' | 'alert_animations' | 'creator_avatars';
+    category: 'payment_providers' | 'alert_animations' | 'creator_avatars' | 'brand_logos';
     rel_path: string;
     mime_type: string;
     alt: string;
@@ -37,7 +37,11 @@ export interface CreatorAvatarAsset extends BaseAsset {
     handle: string;
 }
 
-export type StreamlyAsset = PaymentProviderAsset | AlertAnimationAsset | CreatorAvatarAsset;
+export interface BrandLogoAsset extends BaseAsset {
+    category: 'brand_logos';
+}
+
+export type StreamlyAsset = PaymentProviderAsset | AlertAnimationAsset | CreatorAvatarAsset | BrandLogoAsset;
 
 /**
  * Payment Provider Logomarks
@@ -175,12 +179,91 @@ export const CREATOR_AVATARS: readonly CreatorAvatarAsset[] = [
 ] as const;
 
 /**
+ * Official Streamly Brand Logos & Icons
+ */
+export const BRAND_LOGOS: readonly BrandLogoAsset[] = [
+    {
+        id: 'brand-logo-dark',
+        name: 'Streamly Official Logo (Dark)',
+        category: 'brand_logos',
+        rel_path: 'images/brand/streamly-logo-dark.jpg',
+        mime_type: 'image/jpeg',
+        alt: 'Streamly Official Logo (Dark)',
+        description: 'Official Streamly 3D ribbon gamepad logo and wordmark on dark background',
+        size_bytes: 40920,
+        md5: 'd29253d3b34db567cfb2cf456277908e',
+        dimensions: { width: 1024, height: 576 }
+    },
+    {
+        id: 'brand-logo-light',
+        name: 'Streamly Official Logo (Light)',
+        category: 'brand_logos',
+        rel_path: 'images/brand/streamly-logo-light.jpg',
+        mime_type: 'image/jpeg',
+        alt: 'Streamly Official Logo (Light)',
+        description: 'Official Streamly 3D ribbon gamepad logo and wordmark on light background',
+        size_bytes: 48112,
+        md5: '0f6c419e66a9cf11a19256ba56501615',
+        dimensions: { width: 1024, height: 576 }
+    },
+    {
+        id: 'brand-logo-banner',
+        name: 'Streamly Brand Banner (Dark)',
+        category: 'brand_logos',
+        rel_path: 'images/brand/streamly-logo-banner.jpg',
+        mime_type: 'image/jpeg',
+        alt: 'Streamly Brand Banner (Dark)',
+        description: 'Cropped brand mark and wordmark banner for dark navigation and footer',
+        size_bytes: 49475,
+        md5: '054131efe2a705d3620cd71ff3eb6c02',
+        dimensions: { width: 650, height: 449 }
+    },
+    {
+        id: 'brand-logo-banner-light',
+        name: 'Streamly Brand Banner (Light)',
+        category: 'brand_logos',
+        rel_path: 'images/brand/streamly-logo-banner-light.jpg',
+        mime_type: 'image/jpeg',
+        alt: 'Streamly Brand Banner (Light)',
+        description: 'Cropped brand mark and wordmark banner for light theme headers',
+        size_bytes: 55187,
+        md5: '9f7af4f5d724aed6192d46583e2ebd36',
+        dimensions: { width: 650, height: 449 }
+    },
+    {
+        id: 'brand-icon',
+        name: 'Streamly Brand Icon Mark',
+        category: 'brand_logos',
+        rel_path: 'images/brand/streamly-icon.png',
+        mime_type: 'image/png',
+        alt: 'Streamly Brand Icon Mark',
+        description: 'Square icon mark featuring the Streamly 3D ribbon and gamepad controller',
+        size_bytes: 95690,
+        md5: 'ddc4d85836825919cd12a12d05adff33',
+        dimensions: { width: 536, height: 536 }
+    },
+    {
+        id: 'brand-favicon',
+        name: 'Streamly Favicon 32x32',
+        category: 'brand_logos',
+        rel_path: 'images/brand/favicon-32x32.png',
+        mime_type: 'image/png',
+        alt: 'Streamly Favicon 32x32',
+        description: 'Browser tab favicon icon 32x32',
+        size_bytes: 1352,
+        md5: '6b2c533ab8b45649dda8e860dd265923',
+        dimensions: { width: 32, height: 32 }
+    }
+] as const;
+
+/**
  * All assets combined
  */
 export const ALL_ASSETS: readonly StreamlyAsset[] = [
     ...PAYMENT_PROVIDERS,
     ...ALERT_ANIMATIONS,
-    ...CREATOR_AVATARS
+    ...CREATOR_AVATARS,
+    ...BRAND_LOGOS
 ];
 
 /**

@@ -37,8 +37,18 @@ export const BORDER_RADIUS = {
     full: '9999px'
 } as const;
 
+export const BRAND_ASSETS = {
+    logoDark: 'images/brand/streamly-logo-dark.jpg',
+    logoLight: 'images/brand/streamly-logo-light.jpg',
+    logoBanner: 'images/brand/streamly-logo-banner.jpg',
+    logoBannerLight: 'images/brand/streamly-logo-banner-light.jpg',
+    iconMark: 'images/brand/streamly-icon.png',
+    favicon: 'images/brand/favicon-32x32.png',
+} as const;
+
 export const DESIGN_TOKENS = {
     colors: BRAND_COLORS,
     typography: TYPOGRAPHY,
-    borderRadius: BORDER_RADIUS
+    borderRadius: BORDER_RADIUS,
+    assets: BRAND_ASSETS,
 } as const;
