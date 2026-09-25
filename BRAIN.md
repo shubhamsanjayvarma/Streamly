@@ -21,6 +21,13 @@ streamly/
 ├── APP_FLOW.md                 # Navigation and interaction flows
 ├── BRAIN.md                    # This file — AI project context
 ├── README.md                   # Project readme
+├── assets/                     # Media assets & reference code
+│   ├── images/                 # Categorized providers, alerts, creators media
+│   ├── code/                   # Refactored clean reference landing page (HTML/CSS/JS)
+│   ├── manifest.json           # Asset catalog with checksums, dimensions, metadata
+│   ├── index.ts / index.js     # TypeScript/JavaScript programmatic asset exports
+│   ├── README.md               # Asset folder documentation & usage guide
+│   └── archives/               # Original source Woblo archives
 ├── .env.example                # Environment variable template
 ├── package.json                # Dependencies and scripts
 ├── tsconfig.json               # TypeScript configuration (strict mode)
