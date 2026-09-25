@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+:root {
+  /* Streamly Official Brand Color Palette */
+  --primary-purple: #6D3DF5;
+  --deep-purple: #4B24B8;
+  --lavender: #A78BFA;
+  --soft-lavender: #F3F0FF;
+
+  --primary-text: #17151D;
+  --secondary-text: #6B6875;
+  --border: #E8E4F0;
+  --surface: #FFFFFF;
+  --soft-background: #F8F7FC;
+
+  --success: #16A34A;
+  --warning: #D97706;
+  --error: #DC2626;
+
+  /* Dark mode surface variables for dashboard/gaming login */
+  --bg-dark: #06070a;
+  --surface-dark: #0f1118;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes successPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); background-color: #16A34A; }
+  100% { transform: scale(1); background-color: #16A34A; }
+}
+
+.animate-success {
+  animation: successPulse 0.5s ease-in-out forwards;
+}
