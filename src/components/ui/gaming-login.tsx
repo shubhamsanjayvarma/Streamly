@@ -101,16 +101,19 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({ videoUrl }) => {
     }, []);
 
     return (
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-            <div className="absolute inset-0 bg-black/30 z-10" />
+        <div className="fixed inset-0 w-screen h-screen overflow-hidden pointer-events-none bg-[#06070a]">
+            {/* Cinematic gaming spotlight: Clearer on the sides to showcase streamers, deeper in center for text legibility */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(9,10,15,0.45)_0%,rgba(6,7,10,0.22)_55%,rgba(6,7,10,0.65)_100%)] z-10" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#06070a]/75 via-transparent to-[#06070a]/80 z-10" />
             <video
                 ref={videoRef}
-                className="absolute inset-0 min-w-full min-h-full object-cover w-auto h-auto"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full min-w-full min-h-full object-cover object-[center_35%]"
                 autoPlay
                 loop
                 muted
                 playsInline
             >
+                <source src="/video/bg.mp4" type="video/mp4" />
                 <source src={videoUrl} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
@@ -141,36 +144,35 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
     };
 
     return (
-        <div className="p-8 rounded-2xl backdrop-blur-sm bg-black/50 border border-white/10">
-            <div className="mb-8 text-center">
-                <div className="mx-auto mb-4 w-16 h-16 rounded-2xl bg-purple-600/20 border border-purple-400/30 flex items-center justify-center shadow-lg shadow-purple-500/20 hover:scale-105 transition-transform duration-300">
+        <div className="p-7 max-w-[400px] w-full rounded-2xl backdrop-blur-xl bg-[#0d0f17]/80 border border-white/10 shadow-2xl shadow-black/60">
+            <div className="mb-6 text-center">
+                <div className="mx-auto mb-3 w-16 h-16 rounded-2xl bg-purple-600/20 border border-purple-400/30 flex items-center justify-center shadow-lg shadow-purple-500/20 hover:scale-105 transition-transform duration-300">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/brand/streamly-icon.png" alt="Streamly" className="w-12 h-12 object-contain rounded-lg drop-shadow" />
                 </div>
-                <h2 className="text-3xl font-bold mb-2 relative group">
+                <h2 className="text-2xl font-bold mb-1.5 relative group">
                     <span className="absolute -inset-1 bg-gradient-to-r from-purple-600/30 via-pink-500/30 to-blue-500/30 blur-xl opacity-75 group-hover:opacity-100 transition-all duration-500 animate-pulse"></span>
-                    <span className="relative inline-block text-3xl font-bold mb-2 text-white">
+                    <span className="relative inline-block text-2xl font-bold text-white">
                         Streamly
                     </span>
                     <span className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
                 </h2>
-                <p className="text-white/80 flex flex-col items-center space-y-1">
+                <p className="text-white/80 flex flex-col items-center space-y-0.5 text-sm">
                     <span className="relative group cursor-default">
-                        <span className="absolute -inset-1 bg-gradient-to-r from-purple-600/20 to-pink-600/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-                        <span className="relative inline-block animate-pulse">Your gaming universe awaits</span>
+                        <span className="relative inline-block">Your gaming universe awaits</span>
                     </span>
-                    <span className="text-xs text-white/50 animate-pulse">
+                    <span className="text-xs text-white/50">
                         [Press Enter to join the adventure]
                     </span>
-                    <div className="flex space-x-2 text-xs text-white/40">
-                        <span className="animate-pulse">⚔️</span>
-                        <span className="animate-bounce">🎮</span>
-                        <span className="animate-pulse">🏆</span>
+                    <div className="flex space-x-2 text-xs text-white/40 pt-1">
+                        <span>⚔️</span>
+                        <span>🎮</span>
+                        <span>🏆</span>
                     </div>
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
                 <FormInput
                     icon={<Mail className="text-white/60" size={18} />}
                     type="email"
