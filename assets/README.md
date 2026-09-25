@@ -63,13 +63,18 @@ The original scraped landing page inlined over **2.7 MB** of base64 data URIs in
    - Modularized interactive script link: `<script src="app.js" defer></script>`.
 
 2. **`styles.css`**:
-   - Modern gaming dark-mode theme tokens:
-     - `--bg: #06070a` (Deep black background)
-     - `--surface: #0f1118` (Elevation layer)
-     - `--surface-glass: rgba(15, 17, 24, 0.75)` (Frosted glassmorphism)
-     - `--primary: #8b5cf6` (Electric violet)
-     - `--primary-gradient: linear-gradient(135deg, #8b5cf6, #6366f1, #ec4899)`
-     - `--accent-cyan: #06b6d4`, `--accent-green: #10b981`, `--accent-amber: #f59e0b`
+   - Official brand design system tokens:
+     - `--primary-purple` / `--primary`: `#6D3DF5` (Electric brand purple)
+     - `--deep-purple` / `--primary-hover`: `#4B24B8` (Deep accent purple)
+     - `--lavender`: `#A78BFA` (Mid-tone purple)
+     - `--soft-lavender`: `#F3F0FF` (Subtle purple tint)
+     - `--primary-text`: `#17151D` (Heading & primary text)
+     - `--secondary-text`: `#6B6875` (Body & secondary text)
+     - `--border`: `#E8E4F0` (Borders & dividers)
+     - `--surface`: `#FFFFFF` (Surface elevation)
+     - `--soft-background`: `#F8F7FC` (Soft background)
+     - `--success`: `#16A34A`, `--warning`: `#D97706`, `--error`: `#DC2626`
+     - `--primary-gradient`: `linear-gradient(135deg, #6D3DF5, #4B24B8, #A78BFA)`
    - Smooth micro-animations: `@keyframes glowPulse`, `@keyframes pulseDot`, `@keyframes floatCard`.
    - Full responsive layout system with breakpoints for mobile, tablet, and widescreen monitors.
 

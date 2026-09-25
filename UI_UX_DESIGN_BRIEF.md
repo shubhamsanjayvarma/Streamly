@@ -17,53 +17,32 @@ The final approved Streamly logo is the purple logo provided by the user. Do not
 
 ## Color Palette
 
-### Primary Colors
+### Brand Colors (Purple Spectrum)
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--primary` | `#8B5CF6` (Purple 500) | Primary brand accent — buttons, links, active states, brand moments |
-| `--primary-hover` | `#7C3AED` (Purple 600) | Hover states for primary elements |
-| `--primary-light` | `#A78BFA` (Purple 400) | Secondary accent, highlights |
-| `--primary-muted` | `#6D28D9/10%` | Subtle backgrounds, badges |
+| Token | Hex | Role & Usage |
+|-------|-----|--------------|
+| `--primary-purple` / `--primary` | `#6D3DF5` | Primary brand color — CTA buttons, active tabs, brand accents, glowing indicators |
+| `--deep-purple` / `--primary-hover` | `#4B24B8` | Deep accent — hover & active states, deep gradient stops, focused borders |
+| `--lavender` / `--primary-light` | `#A78BFA` | Mid-accent — badges, pill borders, secondary icons, highlights |
+| `--soft-lavender` / `--primary-subtle` | `#F3F0FF` | Subtle background tint — active item backgrounds, subtle chip fills, table hover |
 
-### Surface Colors (Light / Marketing)
+### Surface & Neutral Colors
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--bg-white` | `#FFFFFF` | Marketing page backgrounds |
-| `--bg-subtle` | `#F8FAFC` (Slate 50) | Alternate section backgrounds |
-| `--surface` | `#FFFFFF` | Cards, panels |
-| `--surface-raised` | `#F1F5F9` (Slate 100) | Elevated surfaces |
-| `--border` | `#E2E8F0` (Slate 200) | Card borders, dividers |
-| `--border-subtle` | `#F1F5F9` (Slate 100) | Subtle separators |
+| Token | Hex | Role & Usage |
+|-------|-----|--------------|
+| `--primary-text` / `--text-primary` | `#17151D` | High-contrast text — page headings, card titles, key metric numbers |
+| `--secondary-text` / `--text-secondary` | `#6B6875` | Medium-contrast text — body paragraphs, subheadings, labels, metadata |
+| `--border` | `#E8E4F0` | Structural dividers, card borders, form input outlines |
+| `--surface` | `#FFFFFF` | Elevated card backgrounds, modal dialogs, popovers, navigation bars |
+| `--soft-background` / `--bg` | `#F8F7FC` | Base page background, section alternate fills, table container backgrounds |
 
-### Surface Colors (Dark / Dashboard & OBS)
+### Feedback & Semantic Colors
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--bg-dark` | `#0F172A` (Slate 900) | Dashboard background |
-| `--surface-dark` | `#1E293B` (Slate 800) | Dashboard cards |
-| `--surface-dark-raised` | `#334155` (Slate 700) | Elevated dashboard elements |
-| `--border-dark` | `#334155` (Slate 700) | Dark mode borders |
-
-### Text Colors
-
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--text-primary` | `#0F172A` (Slate 900) | Headings, primary text (light mode) |
-| `--text-secondary` | `#475569` (Slate 600) | Body text, descriptions |
-| `--text-muted` | `#94A3B8` (Slate 400) | Captions, labels, metadata |
-| `--text-on-dark` | `#F8FAFC` (Slate 50) | Text on dark backgrounds |
-| `--text-on-dark-muted` | `#94A3B8` (Slate 400) | Muted text on dark backgrounds |
-
-### Semantic Colors
-
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--success` | `#10B981` (Emerald 500) | Confirmed, active, connected |
-| `--warning` | `#F59E0B` (Amber 500) | Pending, attention needed |
-| `--error` | `#EF4444` (Red 500) | Failed, error, destructive |
-| `--info` | `#3B82F6` (Blue 500) | Informational |
+| Token | Hex | Role & Usage |
+|-------|-----|--------------|
+| `--success` | `#16A34A` | Success states — successful tip alerts, verified badges, connected UPI status |
+| `--warning` | `#D97706` | Warning states — low token alerts, pending webhook retries, KYC notice |
+| `--error` | `#DC2626` | Destructive states — failed transactions, validation errors, disconnected alerts |
 
 ### Usage Rules
 

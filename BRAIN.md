@@ -179,9 +179,11 @@ CONFIRMED → REFUNDED / PARTIALLY_REFUNDED / DISPUTED
 ## Design System Summary
 
 - **Fonts:** Plus Jakarta Sans (display), Inter (body)
-- **Primary color:** `#8B5CF6` (purple) — used intentionally, not everywhere
-- **Marketing:** white backgrounds, slate text
-- **Dashboard:** dark slate backgrounds
+- **Brand Palette:** Primary Purple (`#6D3DF5`), Deep Purple (`#4B24B8`), Lavender (`#A78BFA`), Soft Lavender (`#F3F0FF`)
+- **Surfaces & Text:** Primary Text (`#17151D`), Secondary Text (`#6B6875`), Border (`#E8E4F0`), Surface (`#FFFFFF`), Soft Background (`#F8F7FC`)
+- **Feedback:** Success (`#16A34A`), Warning (`#D97706`), Error (`#DC2626`)
+- **Marketing:** clean light backgrounds with deep purple accents
+- **Dashboard & OBS:** dark gaming surfaces with electric purple glowing accents
 - **Donation page:** mobile-first
 - **Icons:** Lucide React only
 

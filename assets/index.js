@@ -142,13 +142,45 @@ function getProviderLogoPath(providerName) {
     return found ? found.rel_path : undefined;
 }
 
+const BRAND_COLORS = {
+    primaryPurple: '#6D3DF5',
+    deepPurple: '#4B24B8',
+    lavender: '#A78BFA',
+    softLavender: '#F3F0FF',
+    primaryText: '#17151D',
+    secondaryText: '#6B6875',
+    border: '#E8E4F0',
+    surface: '#FFFFFF',
+    softBackground: '#F8F7FC',
+    success: '#16A34A',
+    warning: '#D97706',
+    error: '#DC2626'
+};
+
+const DESIGN_TOKENS = {
+    colors: BRAND_COLORS,
+    typography: {
+        display: "'Plus Jakarta Sans', system-ui, sans-serif",
+        body: "'Inter', system-ui, sans-serif"
+    },
+    borderRadius: {
+        sm: '8px',
+        md: '14px',
+        lg: '22px',
+        full: '9999px'
+    }
+};
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         PAYMENT_PROVIDERS,
         ALERT_ANIMATIONS,
         CREATOR_AVATARS,
         ALL_ASSETS,
+        BRAND_COLORS,
+        DESIGN_TOKENS,
         getAssetById,
         getProviderLogoPath
     };
 }
+
