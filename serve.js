@@ -36,6 +36,13 @@ function createServer(port) {
             return;
         }
 
+        // Redirect /login to /code/login.html
+        if (pathname === '/login' || pathname === '/login.html') {
+            res.writeHead(302, { Location: '/code/login.html' });
+            res.end();
+            return;
+        }
+
         // Prevent directory traversal
         const safePath = path.normalize(path.join(ASSETS_ROOT, pathname));
         if (!safePath.startsWith(ASSETS_ROOT)) {
