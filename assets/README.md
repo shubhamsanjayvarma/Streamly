@@ -30,8 +30,8 @@ assets/
 │   ├── styles.css                 # Dark-mode gaming design system stylesheet
 │   └── app.js                     # Interactive logic (calculator, tabs, alerts, mobile menu)
 └── archives/                      # Original upstream Woblo zip archives (preserved)
-    ├── streamtipz-india-s-1-direct-upi-tipping-alerts-for-streamers-0-payout-delay.assets.Woblo.zip
-    └── streamtipz-india-s-1-direct-upi-tipping-alerts-for-streamers-0-payout-delay.full-page.Woblo.zip
+    ├── streamly-india-s-1-direct-upi-tipping-alerts-for-streamers-0-payout-delay.assets.Woblo.zip
+    └── streamly-india-s-1-direct-upi-tipping-alerts-for-streamers-0-payout-delay.full-page.Woblo.zip
 ```
 
 ---

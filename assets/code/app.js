@@ -73,7 +73,7 @@ function updateCalculator(val) {
     const amount = parseFloat(val) || 0;
     const displayAmount = document.getElementById('calc-display-amount');
     const ytPayoutEl = document.getElementById('calc-yt-payout');
-    const stzPayoutEl = document.getElementById('calc-stz-payout');
+    const streamlyPayoutEl = document.getElementById('calc-streamly-payout');
     const savingsMsgEl = document.getElementById('calc-savings-msg');
 
     if (displayAmount) {
@@ -83,14 +83,14 @@ function updateCalculator(val) {
     // YouTube Superchat keeps ~30% (creator receives 70%)
     const ytPayout = amount * 0.70;
     // Direct UPI platform fee (~5% standard or 0% direct)
-    const stzPayout = amount * 0.95;
-    const savings = stzPayout - ytPayout;
+    const streamlyPayout = amount * 0.95;
+    const savings = streamlyPayout - ytPayout;
 
     if (ytPayoutEl) {
         ytPayoutEl.textContent = '₹' + Math.round(ytPayout).toLocaleString('en-IN');
     }
-    if (stzPayoutEl) {
-        stzPayoutEl.textContent = '₹' + Math.round(stzPayout).toLocaleString('en-IN');
+    if (streamlyPayoutEl) {
+        streamlyPayoutEl.textContent = '₹' + Math.round(streamlyPayout).toLocaleString('en-IN');
     }
     if (savingsMsgEl) {
         savingsMsgEl.textContent = '🎉 You save ₹' + Math.round(savings).toLocaleString('en-IN') + ' every month with direct UPI!';
