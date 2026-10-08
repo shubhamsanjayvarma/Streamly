@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streamly - Creator Login | Gaming Streamer Monetization</title>
+    <link rel="icon" href="../images/brand/favicon-32x32.png" sizes="32x32">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-purple: #6D3DF5;
+            --deep-purple: #4B24B8;
+            --lavender: #A78BFA;
+            --soft-lavender: #F3F0FF;
+            --surface-glass: rgba(15, 17, 24, 0.65);
+            --border-glass: rgba(255, 255, 255, 0.12);
+            --success: #16A34A;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #06070a;
+            color: #ffffff;
+            font-family: 'Inter', system-ui, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4.5rem 1.5rem 2.5rem;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* Fullscreen Video Background */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+            background-color: #06070a;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            /* Balanced gaming spotlight: Clearer on the sides to showcase streamers, deeper in center for text legibility */
+            background: radial-gradient(ellipse at 50% 50%, rgba(9, 10, 15, 0.45) 0%, rgba(6, 7, 10, 0.22) 55%, rgba(6, 7, 10, 0.65) 100%),
+                        linear-gradient(to bottom, rgba(6, 7, 10, 0.75) 0%, rgba(6, 7, 10, 0.1) 15%, rgba(6, 7, 10, 0.1) 85%, rgba(6, 7, 10, 0.8) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            object-position: center 35%;
+        }
+
+        /* Top Brand & Back Link */
+        .top-nav {
+            position: fixed;
+            top: 1.25rem;
+            left: 2rem;
+            right: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 20;
+        }
+
+        .close-circle-btn {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(15, 17, 24, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .close-circle-btn:hover {
+            color: #ffffff;
+            background: rgba(109, 61, 245, 0.4);
+            border-color: var(--primary-purple);
+            transform: translateX(-50%) scale(1.08);
+            box-shadow: 0 0 20px rgba(109, 61, 245, 0.5);
+        }
+
+        .top-brand {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: 0.08em;
+            color: #ffffff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .nav-brand-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            border-radius: 6px;
+            filter: drop-shadow(0 2px 6px rgba(109, 61, 245, 0.6));
+            display: inline-block;
+        }
+
+        .card-logo-container {
+            margin: 0 auto 1rem;
+            width: 76px;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            background: rgba(109, 61, 245, 0.15);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            box-shadow: 0 0 25px rgba(109, 61, 245, 0.35);
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+
+        .card-logo-container:hover {
+            transform: scale(1.06) rotate(-2deg);
+            box-shadow: 0 0 35px rgba(109, 61, 245, 0.55);
+        }
+
+        .card-brand-icon {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 12px;
+            filter: drop-shadow(0 4px 12px rgba(109, 61, 245, 0.5));
+            display: block;
+        }
+
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-glass);
+            padding: 0.45rem 1rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+        }
+
+        .back-home-btn:hover {
+            color: #ffffff;
+            background: rgba(109, 61, 245, 0.25);
+            border-color: var(--primary-purple);
+            transform: translateX(-2px);
+        }
+
+        /* Login Card Container */
+        .login-wrap {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: clamp(340px, 90vw, 400px);
+            margin: auto;
+            animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .login-card {
+            padding: 1.85rem 1.75rem;
+            border-radius: 1.25rem;
+            background: rgba(13, 15, 23, 0.78);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 35px rgba(109, 61, 245, 0.15);
+        }
+
+        /* Header within Card */
+        .card-header {
+            text-align: center;
+            margin-bottom: 1.4rem;
+        }
+
+        .card-logo-container {
+            margin: 0 auto 0.75rem;
+            width: 66px;
+            height: 66px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            background: rgba(109, 61, 245, 0.18);
+            border: 1px solid rgba(167, 139, 250, 0.35);
+            box-shadow: 0 0 25px rgba(109, 61, 245, 0.35);
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+
+        .card-logo-container:hover {
+            transform: scale(1.06) rotate(-2deg);
+            box-shadow: 0 0 35px rgba(109, 61, 245, 0.55);
+        }
+
+        .card-brand-icon {
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+            border-radius: 10px;
+            filter: drop-shadow(0 4px 12px rgba(109, 61, 245, 0.5));
+            display: block;
+        }
+
+        .brand-title-wrap {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 0.35rem;
+        }
+
+        .brand-glow {
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(135deg, rgba(109, 61, 245, 0.45), rgba(236, 72, 153, 0.35), rgba(6, 182, 212, 0.35));
+            filter: blur(16px);
+            opacity: 0.8;
+            border-radius: 1rem;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .brand-title {
+            position: relative;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            font-size: 1.9rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .tagline {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.88rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .adventure-hint {
+            font-size: 0.76rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: monospace;
+            letter-spacing: 0.05em;
+        }
+
+        .emojis {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+        }
+
+        /* Form Controls */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.95rem;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.7rem 2.4rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 0.65rem;
+            color: #ffffff;
+            font-size: 0.92rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .input-field:focus {
+            border-color: var(--primary-purple);
+            background: rgba(255, 255, 255, 0.09);
+            box-shadow: 0 0 0 3px rgba(109, 61, 245, 0.25);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 0.25rem;
+            transition: color 0.2s ease;
+        }
+
+        .password-toggle:hover {
+            color: #ffffff;
+        }
+
+        /* Remember Me & Forgot Password */
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .remember-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            cursor: pointer;
+            user-select: none;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .remember-wrap:hover {
+            color: #ffffff;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 38px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .toggle-switch input {
+            display: none;
+        }
+
+        .toggle-track {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 9999px;
+            transition: background 0.25s ease;
+        }
+
+        .toggle-switch input:checked + .toggle-track {
+            background: var(--primary-purple);
+        }
+
+        .toggle-thumb {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: #ffffff;
+            border-radius: 50%;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .toggle-switch input:checked + .toggle-track .toggle-thumb {
+            transform: translateX(18px);
+        }
+
+        .forgot-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .forgot-link:hover {
+            color: var(--lavender);
+            text-decoration: underline;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.65rem;
+            background: var(--primary-purple);
+            border: none;
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 20px rgba(109, 61, 245, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: var(--deep-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(109, 61, 245, 0.5);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.75;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn.btn-success {
+            background: var(--success) !important;
+            box-shadow: 0 6px 25px rgba(22, 163, 74, 0.45) !important;
+            animation: successPulse 0.5s ease-in-out forwards;
+        }
+
+        /* Quick Access / Social Login */
+        .divider {
+            position: relative;
+            text-align: center;
+            margin: 1.15rem 0 0.9rem;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .divider-text {
+            position: relative;
+            display: inline-block;
+            padding: 0 0.85rem;
+            background: rgba(15, 17, 24, 0.95);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.65rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 0.65rem;
+            color: rgba(255, 255, 255, 0.85);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-color: var(--primary-purple);
+            transform: translateY(-1px);
+        }
+
+        /* Footer inside card */
+        .card-footer {
+            margin-top: 1.15rem;
+            text-align: center;
+            font-size: 0.84rem;
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .card-footer a {
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: 0.25rem;
+            transition: color 0.2s ease;
+        }
+
+        .card-footer a:hover {
+            color: var(--lavender);
+            text-decoration: underline;
+        }
+
+        /* Page Bottom Footer */
+        .page-footer {
+            position: fixed;
+            bottom: 0.75rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.45);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.95; transform: scale(1.04); }
+        }
+
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Video -->
+    <div class="video-container">
+        <div class="video-overlay"></div>
+        <video autoplay loop muted playsinline id="bg-video">
+            <source src="../video/bg.mp4" type="video/mp4">
+            <source src="https://cdn.21st.dev/assets/mirror/38/38f6c913209f4092ea0643267302c0b4873f6aeb56deeb59ead88c794340e84d.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <a href="index.html" class="top-brand">
+            <img src="../images/brand/streamly-icon.png" alt="Streamly" class="nav-brand-logo"> STREAMLY
+        </a>
+        <a href="index.html" class="close-circle-btn" aria-label="Close" title="Return to Home">
+            ✕
+        </a>
+        <a href="index.html" class="back-home-btn">
+            ← Back to Home
+        </a>
+    </nav>
+
+    <!-- Gaming Login Form Card -->
+    <main class="login-wrap">
+        <div class="login-card">
+            <div class="card-header">
+                <div class="card-logo-container">
+                    <img src="../images/brand/streamly-icon.png" alt="Streamly" class="card-brand-icon">
+                </div>
+                <div class="brand-title-wrap">
+                    <div class="brand-glow"></div>
+                    <h1 class="brand-title">Streamly</h1>
+                </div>
+                <div class="tagline">
+                    <span>Your gaming universe awaits</span>
+                    <span class="adventure-hint">[Press Enter to join the adventure]</span>
+                    <div class="emojis">
+                        <span>⚔️</span>
+                        <span>🎮</span>
+                        <span>🏆</span>
+                    </div>
+                </div>
+            </div>
+
+            <form id="creator-login-form" class="login-form" onsubmit="handleLoginSubmit(event)">
+                <div class="input-group">
+                    <div class="input-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                        </svg>
+                    </div>
+                    <input type="email" id="login-email" class="input-field" placeholder="Creator Email Address" required autocomplete="email">
+                </div>
+
+                <div class="input-group">
+                    <div class="input-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                    </div>
+                    <input type="password" id="login-password" class="input-field" placeholder="Password" required autocomplete="current-password">
+                    <button type="button" class="password-toggle" onclick="togglePasswordVisibility()" aria-label="Toggle password visibility">
+                        <svg id="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-wrap" for="remember-me">
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="remember-me">
+                            <div class="toggle-track">
+                                <div class="toggle-thumb"></div>
+                            </div>
+                        </div>
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-link" onclick="alert('Password reset link will be sent to your email.'); return false;">Forgot password?</a>
+                </div>
+
+                <button type="submit" id="submit-btn" class="submit-btn">
+                    <span id="btn-text">Enter Streamly</span>
+                </button>
+            </form>
+
+            <div class="divider">
+                <span class="divider-text">quick access via</span>
+            </div>
+
+            <div class="social-grid">
+                <button type="button" class="social-btn" title="Sign in with Google / Chrome" onclick="simulateOAuth('Google')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/>
+                    </svg>
+                </button>
+                <button type="button" class="social-btn" title="Sign in with X / Twitter" onclick="simulateOAuth('X')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </button>
+                <button type="button" class="social-btn" title="Sign in with Steam" onclick="simulateOAuth('Steam')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="card-footer">
+                Don't have an account? <a href="index.html#pricing">Create Account</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        © 2026 Streamly. All rights reserved. Gaming Creator Monetization.
+    </footer>
+
+    <script>
+        // Ensure background video autoplays
+        const video = document.getElementById('bg-video');
+        if (video) {
+            video.play().catch(e => console.log('Video autoplay prevented:', e));
+        }
+
+        // Toggle password show/hide
+        let showPassword = false;
+        function togglePasswordVisibility() {
+            showPassword = !showPassword;
+            const pwdInput = document.getElementById('login-password');
+            const eyeIcon = document.getElementById('eye-icon');
+            if (pwdInput) {
+                pwdInput.type = showPassword ? 'text' : 'password';
+            }
+            if (eyeIcon) {
+                if (showPassword) {
+                    eyeIcon.innerHTML = '<path d="m15 18-.722-3.25"/><path d="M2 8a10.645 10.645 0 0 0 20 0"/><path d="m20 15-1.726-2.05"/><path d="m4 15 1.726-2.05"/><path d="m9 18 .722-3.25"/>';
+                } else {
+                    eyeIcon.innerHTML = '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>';
+                }
+            }
+        }
+
+        // Handle login submit with simulated server response
+        async function handleLoginSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const email = document.getElementById('login-email').value;
+            const remember = document.getElementById('remember-me').checked;
+
+            btn.disabled = true;
+            btnText.textContent = 'Logging in...';
+
+            await new Promise(r => setTimeout(r, 900));
+
+            btn.classList.add('btn-success');
+            btnText.textContent = '✓ Login Successful!';
+
+            await new Promise(r => setTimeout(r, 600));
+
+            alert(`Welcome back, Creator (${email})!\nRemember device: ${remember ? 'Yes' : 'No'}\nRedirecting to Creator Dashboard...`);
+            window.location.href = 'index.html';
+        }
+
+        function simulateOAuth(provider) {
+            alert(`Redirecting to ${provider} OAuth authentication for Streamly...`);
+        }
+    </script>
+</body>
+</html>
