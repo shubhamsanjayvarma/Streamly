@@ -43,3 +43,7 @@ scratch/
 .vercel
 .env*
 !.env.example
+*.zip
+Woblo/
+tsconfig.tsbuildinfo
+
